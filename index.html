@@ -14,11 +14,41 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6e6e6;
+            --text-secondary: #8b949e;
+            --text-tertiary: #c9d1d9;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #1f6feb;
+            --success: #2ea043;
+            --warning: #f78166;
+            --error: #f85149;
+            --border: #30363d;
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+        
+        .theme-light {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --bg-tertiary: #eaeef2;
+            --text-primary: #1f2328;
+            --text-secondary: #656d76;
+            --text-tertiary: #424a53;
+            --accent-primary: #1f6feb;
+            --accent-secondary: #0d419d;
+            --border: #d0d7de;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        
         body {
-            background-color: #0d1117;
-            color: #e6e6e6;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
+            transition: all 0.3s ease;
         }
         
         .container {
@@ -29,13 +59,13 @@
         
         /* Header */
         header {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             padding: 15px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px var(--shadow);
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid #30363d;
+            border-bottom: 1px solid var(--border);
         }
         
         .logo {
@@ -49,21 +79,17 @@
             height: 60px;
             border-radius: 12px;
             object-fit: cover;
-            border: 2px solid #58a6ff;
+            border: 2px solid var(--accent-primary);
         }
         
         .logo h1 {
             font-size: 1.8rem;
-            background: linear-gradient(to right, #58a6ff, #8b949e);
+            background: linear-gradient(to right, var(--accent-primary), var(--text-secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             font-weight: 800;
             letter-spacing: 1px;
-        }
-        
-        .logo span {
-            color: #f78166;
         }
         
         nav {
@@ -72,13 +98,42 @@
             align-items: center;
         }
         
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .theme-toggle {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            border-color: var(--accent-primary);
+        }
+        
+        .theme-toggle i {
+            font-size: 1.2rem;
+        }
+        
         .nav-links {
             display: flex;
             gap: 15px;
         }
         
         .nav-links a {
-            color: #c9d1d9;
+            color: var(--text-tertiary);
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
@@ -91,7 +146,7 @@
         }
         
         .nav-links a:hover, .nav-links a.active {
-            color: #58a6ff;
+            color: var(--accent-primary);
             background-color: rgba(88, 166, 255, 0.15);
             transform: translateY(-2px);
         }
@@ -229,9 +284,9 @@
         
         /* Sidebar - Category Filter */
         .sidebar {
-            background: #161b22;
+            background: var(--bg-secondary);
             border-radius: 15px;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             padding: 25px;
             height: fit-content;
             position: sticky;
@@ -240,7 +295,7 @@
         
         .sidebar-title {
             font-size: 1.4rem;
-            color: #58a6ff;
+            color: var(--accent-primary);
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -255,9 +310,9 @@
         
         .category-item {
             padding: 14px 18px;
-            background: linear-gradient(135deg, #21262d 0%, #161b22 100%);
-            border: 1px solid #30363d;
-            color: #c9d1d9;
+            background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+            border: 1px solid var(--border);
+            color: var(--text-tertiary);
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
@@ -270,12 +325,12 @@
         
         .category-item:hover {
             transform: translateX(5px);
-            border-color: #58a6ff;
+            border-color: var(--accent-primary);
             box-shadow: 0 5px 15px rgba(88, 166, 255, 0.2);
         }
         
         .category-item.active {
-            background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             color: white;
             border-color: transparent;
             box-shadow: 0 5px 15px rgba(88, 166, 255, 0.3);
@@ -288,10 +343,10 @@
         
         /* Search Box */
         .search-box {
-            background: #161b22;
+            background: var(--bg-secondary);
             padding: 20px;
             border-radius: 15px;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             margin-bottom: 30px;
             display: flex;
             gap: 15px;
@@ -299,23 +354,23 @@
         
         .search-input {
             flex: 1;
-            background: #0d1117;
-            border: 1px solid #30363d;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
             padding: 14px 20px;
             border-radius: 10px;
-            color: white;
+            color: var(--text-primary);
             font-size: 1rem;
             min-width: 0;
         }
         
         .search-input:focus {
             outline: none;
-            border-color: #58a6ff;
+            border-color: var(--accent-primary);
             box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
         }
         
         .search-btn {
-            background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             color: white;
             border: none;
             padding: 14px 30px;
@@ -343,23 +398,23 @@
         }
         
         .stat-card {
-            background: #161b22;
+            background: var(--bg-secondary);
             padding: 25px;
             border-radius: 15px;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             text-align: center;
             transition: all 0.3s;
         }
         
         .stat-card:hover {
             transform: translateY(-5px);
-            border-color: #58a6ff;
+            border-color: var(--accent-primary);
         }
         
         .stat-number {
             font-size: 2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #58a6ff, #f78166);
+            background: linear-gradient(135deg, var(--accent-primary), #f78166);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -367,7 +422,7 @@
         }
         
         .stat-label {
-            color: #8b949e;
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
         
@@ -380,23 +435,23 @@
         }
         
         .mod-card {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             position: relative;
         }
         
         .mod-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border-color: #58a6ff;
+            box-shadow: 0 20px 40px var(--shadow);
+            border-color: var(--accent-primary);
         }
         
         .mod-image {
             height: 200px;
-            background: linear-gradient(135deg, #0d1117, #161b22);
+            background: linear-gradient(135deg, var(--bg-primary), var(--bg-secondary));
             display: flex;
             align-items: center;
             justify-content: center;
@@ -435,14 +490,14 @@
         .mod-title {
             font-size: 1.3rem;
             margin-bottom: 12px;
-            color: #fff;
+            color: var(--text-primary);
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
         .mod-description {
-            color: #8b949e;
+            color: var(--text-secondary);
             font-size: 0.95rem;
             margin-bottom: 15px;
             line-height: 1.6;
@@ -456,13 +511,13 @@
         .mod-meta {
             display: flex;
             justify-content: space-between;
-            color: #8b949e;
+            color: var(--text-secondary);
             font-size: 0.85rem;
             margin-bottom: 15px;
             padding: 12px;
-            background: rgba(22, 27, 34, 0.8);
+            background: var(--bg-tertiary);
             border-radius: 8px;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
         }
         
         .mod-actions {
@@ -490,11 +545,6 @@
             color: white;
         }
         
-        .mod-btn.delete {
-            background: linear-gradient(135deg, #da3633 0%, #f85149 100%);
-            color: white;
-        }
-        
         .mod-btn:hover {
             transform: translateY(-3px);
             opacity: 0.9;
@@ -504,14 +554,14 @@
         .section-title {
             font-size: 1.8rem;
             margin: 0 0 25px;
-            color: #58a6ff;
+            color: var(--accent-primary);
             display: flex;
             align-items: center;
             gap: 15px;
         }
         
         .stats-badge {
-            background: linear-gradient(135deg, #58a6ff, #1f6feb);
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
             color: white;
             padding: 5px 15px;
             border-radius: 20px;
@@ -525,11 +575,11 @@
         
         /* Game Download Section */
         .game-download-section {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             border-radius: 15px;
             padding: 30px;
             margin: 40px 0;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
         }
         
         .game-download-card {
@@ -553,7 +603,7 @@
         
         .game-info h3 {
             font-size: 1.8rem;
-            color: #58a6ff;
+            color: var(--accent-primary);
             margin-bottom: 15px;
         }
         
@@ -565,10 +615,10 @@
         
         /* Footer */
         footer {
-            background: #0d1117;
+            background: var(--bg-primary);
             padding: 60px 0 30px;
             margin-top: 80px;
-            border-top: 1px solid #30363d;
+            border-top: 1px solid var(--border);
         }
         
         .footer-content {
@@ -581,8 +631,8 @@
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid #30363d;
-            color: #8b949e;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
             font-size: 0.9rem;
         }
         
@@ -620,25 +670,25 @@
             grid-column: 1 / -1;
             text-align: center;
             padding: 60px;
-            background: #161b22;
+            background: var(--bg-secondary);
             border-radius: 15px;
-            border: 2px dashed #30363d;
+            border: 2px dashed var(--border);
         }
         
         .empty-state i {
             font-size: 3rem;
-            color: #58a6ff;
+            color: var(--accent-primary);
             margin-bottom: 20px;
         }
         
         .empty-state h3 {
-            color: #c9d1d9;
+            color: var(--text-tertiary);
             margin-bottom: 10px;
             font-size: 1.4rem;
         }
         
         .empty-state p {
-            color: #8b949e;
+            color: var(--text-secondary);
             margin-bottom: 30px;
             max-width: 500px;
             margin-left: auto;
@@ -663,14 +713,14 @@
         }
         
         .modal-content {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             border-radius: 20px;
             padding: 30px;
             max-width: 800px;
             width: 100%;
             max-height: 90vh;
             overflow-y: auto;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
             position: relative;
         }
@@ -681,7 +731,7 @@
             right: 20px;
             background: none;
             border: none;
-            color: #8b949e;
+            color: var(--text-secondary);
             font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s;
@@ -693,7 +743,7 @@
         
         .modal-title {
             font-size: 1.8rem;
-            color: #58a6ff;
+            color: var(--accent-primary);
             margin-bottom: 25px;
             text-align: center;
             display: flex;
@@ -710,7 +760,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #c9d1d9;
+            color: var(--text-tertiary);
             font-weight: 600;
             font-size: 0.95rem;
         }
@@ -720,10 +770,10 @@
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            background: #0d1117;
-            border: 1px solid #30363d;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            color: white;
+            color: var(--text-primary);
             font-size: 1rem;
             transition: all 0.3s;
         }
@@ -732,7 +782,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #58a6ff;
+            border-color: var(--accent-primary);
             box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.2);
         }
         
@@ -773,14 +823,9 @@
         }
         
         .modal-btn.cancel {
-            background: #21262d;
-            color: #c9d1d9;
-            border: 1px solid #30363d;
-        }
-        
-        .modal-btn.delete {
-            background: linear-gradient(135deg, #da3633 0%, #f85149 100%);
-            color: white;
+            background: var(--bg-tertiary);
+            color: var(--text-tertiary);
+            border: 1px solid var(--border);
         }
         
         .modal-btn:hover {
@@ -789,19 +834,19 @@
         
         /* Download Modal */
         .download-content {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
             border-radius: 20px;
             padding: 30px;
             max-width: 600px;
             width: 100%;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
             position: relative;
         }
         
         .download-title {
             font-size: 1.6rem;
-            color: #58a6ff;
+            color: var(--accent-primary);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -809,10 +854,10 @@
         }
         
         .download-link-container {
-            background: rgba(22, 27, 34, 0.8);
+            background: var(--bg-tertiary);
             border-radius: 10px;
             padding: 15px;
-            border: 1px solid #30363d;
+            border: 1px solid var(--border);
             margin: 20px 0;
             display: flex;
             align-items: center;
@@ -825,7 +870,7 @@
             min-width: 200px;
             background: transparent;
             border: none;
-            color: #58a6ff;
+            color: var(--accent-primary);
             font-size: 0.95rem;
             padding: 10px;
             font-family: monospace;
@@ -834,7 +879,7 @@
         }
         
         .copy-btn {
-            background: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
             color: white;
             border: none;
             padding: 12px 20px;
@@ -846,6 +891,89 @@
             align-items: center;
             gap: 8px;
             font-size: 0.9rem;
+        }
+        
+        /* Settings Modal */
+        .settings-option {
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .settings-option h3 {
+            color: var(--accent-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        
+        .setting-info h4 {
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .setting-info p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 30px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--accent-primary);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
         }
         
         /* Responsive Design */
@@ -1062,10 +1190,15 @@
                     <img src="https://img.icons8.com/color/96/000000/truck.png" alt="ETS2 Logo" class="logo-img">
                     <h1>ETS2<span>Mods</span></h1>
                 </div>
-                <div class="nav-links">
-                    <a href="#" class="active"><i class="fas fa-home"></i> <span>Trang Chủ</span></a>
-                    <a href="#" onclick="openAddModal()"><i class="fas fa-upload"></i> <span>Thêm Mod</span></a>
-                    <a href="#" onclick="showManageModal()"><i class="fas fa-cog"></i> <span>Quản Lý</span></a>
+                <div class="header-right">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="nav-links">
+                        <a href="#" class="active"><i class="fas fa-home"></i> <span>Trang Chủ</span></a>
+                        <a href="#" onclick="openAddModal()"><i class="fas fa-upload"></i> <span>Thêm Mod</span></a>
+                        <a href="#" onclick="showSettingsModal()"><i class="fas fa-cog"></i> <span>Cài Đặt</span></a>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -1140,7 +1273,7 @@
                         </div>
                         <div class="game-info">
                             <h3><i class="fas fa-download"></i> TẢI GAME EURO TRUCK SIMULATOR 2</h3>
-                            <p style="color: #8b949e; margin-bottom: 15px;">
+                            <p style="color: var(--text-secondary); margin-bottom: 15px;">
                                 Tải phiên bản mới nhất của Euro Truck Simulator 2. Game lái xe tải mô phỏng thực tế với đồ họa đẹp và nhiều tính năng hấp dẫn.
                             </p>
                             <div class="game-download-buttons">
@@ -1175,6 +1308,7 @@
     <!-- Modals -->
     <div class="modal" id="addModal">
         <div class="modal-content">
+            <button class="close-modal" onclick="closeAddModal()">&times;</button>
             <h2 class="modal-title"><i class="fas fa-upload"></i> THÊM MOD MỚI</h2>
             
             <form id="addModForm">
@@ -1254,44 +1388,69 @@
         </div>
     </div>
 
-    <!-- Manage Modal -->
-    <div class="modal" id="manageModal">
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
         <div class="modal-content">
-            <button class="close-modal" onclick="closeManageModal()">&times;</button>
-            <h2 class="modal-title"><i class="fas fa-cog"></i> QUẢN LÝ DỮ LIỆU</h2>
+            <button class="close-modal" onclick="closeSettingsModal()">&times;</button>
+            <h2 class="modal-title"><i class="fas fa-cog"></i> CÀI ĐẶT</h2>
             
-            <div class="form-group">
-                <label><i class="fas fa-database"></i> Tổng số mods: <span id="manageTotalMods">0</span></label>
-                <p style="color: #8b949e; font-size: 0.9rem; margin-top: 5px;">
-                    <i class="fas fa-info-circle"></i> Dữ liệu được lưu tự động trong trình duyệt của bạn
-                </p>
-            </div>
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <button onclick="exportData()" class="modal-btn submit" style="width: 100%;">
-                        <i class="fas fa-download"></i> Xuất JSON
-                    </button>
-                </div>
-                <div class="form-group">
-                    <button onclick="importData()" class="modal-btn submit" style="width: 100%;">
-                        <i class="fas fa-upload"></i> Nhập JSON
-                    </button>
+            <div class="settings-option">
+                <h3><i class="fas fa-palette"></i> Giao Diện</h3>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Chế độ tối/sáng</h4>
+                        <p>Chuyển đổi giữa chế độ tối và sáng</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="themeToggle" onchange="toggleTheme()">
+                        <span class="toggle-slider"></span>
+                    </label>
                 </div>
             </div>
             
-            <div class="form-group">
-                <label><i class="fas fa-trash"></i> Xóa toàn bộ dữ liệu</label>
-                <button onclick="clearAllData()" class="modal-btn delete" style="width: 100%;">
-                    <i class="fas fa-trash"></i> XÓA TẤT CẢ
-                </button>
-                <p style="color: #8b949e; font-size: 0.9rem; margin-top: 10px;">
-                    <i class="fas fa-exclamation-triangle"></i> Cảnh báo: Hành động này không thể hoàn tác!
+            <div class="settings-option">
+                <h3><i class="fas fa-info-circle"></i> Thông Tin</h3>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Tổng số mods</h4>
+                        <p id="settingsTotalMods">0</p>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Tổng lượt tải</h4>
+                        <p id="settingsTotalDownloads">0</p>
+                    </div>
+                </div>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>Phiên bản</h4>
+                        <p>ETS2 Mods v1.0</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="settings-option">
+                <h3><i class="fas fa-database"></i> Dữ Liệu</h3>
+                <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 15px;">
+                    <i class="fas fa-info-circle"></i> Dữ liệu được lưu trữ trong file JSON riêng trên hosting. 
+                    Để xóa mod, vui lòng xóa trực tiếp trong file JSON tương ứng.
                 </p>
+                
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h4>File JSON</h4>
+                        <p>Mỗi danh mục có file JSON riêng</p>
+                    </div>
+                </div>
             </div>
             
             <div class="modal-buttons">
-                <button class="modal-btn cancel" onclick="closeManageModal()">
+                <button class="modal-btn cancel" onclick="closeSettingsModal()">
                     <i class="fas fa-times"></i> Đóng
                 </button>
             </div>
@@ -1304,9 +1463,9 @@
             <button class="close-modal" onclick="closeGameDownloadModal()">&times;</button>
             <h2 class="download-title"><i class="fas fa-gamepad"></i> LINK TẢI GAME</h2>
             
-            <div style="background: rgba(88, 166, 255, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #58a6ff;">
-                <h3 style="color: #58a6ff; margin-bottom: 10px;">Thông tin phiên bản:</h3>
-                <ul style="color: #8b949e; padding-left: 20px;">
+            <div style="background: rgba(88, 166, 255, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid var(--accent-primary);">
+                <h3 style="color: var(--accent-primary); margin-bottom: 10px;">Thông tin phiên bản:</h3>
+                <ul style="color: var(--text-secondary); padding-left: 20px;">
                     <li>Euro Truck Simulator 2 v1.47</li>
                     <li>Kích thước: ~15 GB</li>
                     <li>Hệ điều hành: Windows 7/8/10/11, Linux, macOS</li>
@@ -1321,7 +1480,7 @@
                 </button>
             </div>
             
-            <p style="color: #8b949e; font-size: 0.9rem; margin-top: 15px;">
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 15px;">
                 <i class="fas fa-info-circle"></i> Nhấn COPY để sao chép link tải game từ Steam.
             </p>
             
@@ -1341,7 +1500,7 @@
         <div class="download-content">
             <button class="close-modal" onclick="closeDownloadModal()">&times;</button>
             <h2 class="download-title"><i class="fas fa-download"></i> TẢI XUỐNG MOD</h2>
-            <p id="modalModName" style="color: #c9d1d9; margin-bottom: 20px;">Mod Name</p>
+            <p id="modalModName" style="color: var(--text-tertiary); margin-bottom: 20px;">Mod Name</p>
             
             <div class="download-link-container">
                 <input type="text" class="download-link" id="downloadLink" readonly>
@@ -1350,8 +1509,8 @@
                 </button>
             </div>
             
-            <div style="background: rgba(88, 166, 255, 0.1); padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #58a6ff;">
-                <p style="color: #8b949e; font-size: 0.9rem;">
+            <div style="background: rgba(88, 166, 255, 0.1); padding: 15px; border-radius: 8px; margin: 20px 0; border-left: 4px solid var(--accent-primary);">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
                     <i class="fas fa-info-circle"></i> Sau khi tải về, giải nén và copy file .scs vào thư mục "mods" của game
                 </p>
             </div>
@@ -1379,18 +1538,18 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3><img src="https://img.icons8.com/color/48/000000/truck.png" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 10px;">ETS2Mods</h3>
-                    <p style="color: #8b949e; margin-top: 15px;">
+                    <p style="color: var(--text-secondary); margin-top: 15px;">
                         Nền tảng chia sẻ mods Euro Truck Simulator 2. 
-                        Thêm, xóa và quản lý mods dễ dàng với JSON.
+                        Dữ liệu được lưu trong file JSON riêng trên hosting.
                     </p>
                 </div>
                 
                 <div class="footer-section">
                     <h3><i class="fas fa-chart-bar"></i> Thống Kê</h3>
-                    <div style="color: #8b949e; margin-top: 15px;">
+                    <div style="color: var(--text-secondary); margin-top: 15px;">
                         <p><i class="fas fa-box"></i> Tổng mods: <span id="footerTotalMods">0</span></p>
                         <p><i class="fas fa-download"></i> Tổng lượt tải: <span id="footerTotalDownloads">0</span></p>
-                        <p><i class="fas fa-code-branch"></i> Phiên bản dữ liệu: <span id="footerDataId">0</span></p>
+                        <p><i class="fas fa-code-branch"></i> Phiên bản: v1.0</p>
                     </div>
                 </div>
             </div>
@@ -1398,24 +1557,36 @@
             <div class="copyright">
                 <p>© 2024 ETS2Mods. Euro Truck Simulator 2 là sản phẩm của SCS Software.</p>
                 <p style="margin-top: 10px; font-size: 0.8rem;">
-                    <i class="fas fa-info-circle"></i> Trang web này không cần đăng nhập, không thu thập dữ liệu cá nhân.
+                    <i class="fas fa-info-circle"></i> Để xóa mod, vui lòng xóa trực tiếp trong file JSON trên hosting.
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Danh mục với file JSON riêng
+        // Danh sách file JSON cho từng danh mục
+        const jsonFiles = {
+            'trucks': 'trucks.json',
+            'trailers': 'trailers.json',
+            'maps': 'maps.json',
+            'graphics': 'graphics.json',
+            'physics': 'physics.json',
+            'sounds': 'sounds.json',
+            'seasons': 'seasons.json',
+            'game_download': 'game_download.json',
+            'others': 'others.json'
+        };
+
         const categories = {
-            'trucks': { name: 'Xe Tải', file: 'trucks.json', icon: 'truck' },
-            'trailers': { name: 'Trailer', file: 'trailers.json', icon: 'trailer' },
-            'maps': { name: 'Bản Đồ', file: 'maps.json', icon: 'map' },
-            'graphics': { name: 'Đồ Họa', file: 'graphics.json', icon: 'palette' },
-            'physics': { name: 'Vật Lý', file: 'physics.json', icon: 'cogs' },
-            'sounds': { name: 'Âm Thanh', file: 'sounds.json', icon: 'volume-up' },
-            'seasons': { name: 'Mùa', file: 'seasons.json', icon: 'snowflake' },
-            'game_download': { name: 'Tải Game', file: 'game_download.json', icon: 'download' },
-            'others': { name: 'Khác', file: 'others.json', icon: 'cube' }
+            'trucks': { name: 'Xe Tải', icon: 'truck' },
+            'trailers': { name: 'Trailer', icon: 'trailer' },
+            'maps': { name: 'Bản Đồ', icon: 'map' },
+            'graphics': { name: 'Đồ Họa', icon: 'palette' },
+            'physics': { name: 'Vật Lý', icon: 'cogs' },
+            'sounds': { name: 'Âm Thanh', icon: 'volume-up' },
+            'seasons': { name: 'Mùa', icon: 'snowflake' },
+            'game_download': { name: 'Tải Game', icon: 'download' },
+            'others': { name: 'Khác', icon: 'cube' }
         };
 
         // Slider data
@@ -1437,37 +1608,206 @@
             }
         ];
 
-        // Storage với file JSON riêng cho từng danh mục
-        const STORAGE_PREFIX = 'ets2_mods_';
         let currentFilter = 'all';
         let searchQuery = '';
+        let allMods = [];
+        let currentMod = null;
 
         // Helper functions
         function generateId() {
             return Date.now().toString(36) + Math.random().toString(36).substr(2);
         }
 
-        function getCategoryData(category) {
-            const data = localStorage.getItem(`${STORAGE_PREFIX}${category}`);
-            return data ? JSON.parse(data) : [];
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
         }
 
-        function saveCategoryData(category, data) {
-            localStorage.setItem(`${STORAGE_PREFIX}${category}`, JSON.stringify(data));
+        // Theme functions
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            
+            if (body.classList.contains('theme-light')) {
+                body.classList.remove('theme-light');
+                themeIcon.className = 'fas fa-moon';
+                if (themeToggle) themeToggle.checked = false;
+                localStorage.setItem('ets2mods_theme', 'dark');
+                showToast('Đã chuyển sang chế độ tối');
+            } else {
+                body.classList.add('theme-light');
+                themeIcon.className = 'fas fa-sun';
+                if (themeToggle) themeToggle.checked = true;
+                localStorage.setItem('ets2mods_theme', 'light');
+                showToast('Đã chuyển sang chế độ sáng');
+            }
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('ets2mods_theme') || 'dark';
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            
+            if (savedTheme === 'light') {
+                document.body.classList.add('theme-light');
+                if (themeToggle) themeToggle.checked = true;
+                if (themeIcon) themeIcon.className = 'fas fa-sun';
+            } else {
+                document.body.classList.remove('theme-light');
+                if (themeToggle) themeToggle.checked = false;
+                if (themeIcon) themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        // Load mods from JSON files
+        async function loadMods() {
+            allMods = [];
+            
+            // Try to load from JSON files first
+            for (const [category, filename] of Object.entries(jsonFiles)) {
+                try {
+                    const response = await fetch(filename);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (Array.isArray(data)) {
+                            data.forEach(mod => {
+                                mod.category = category;
+                                allMods.push(mod);
+                            });
+                        }
+                    }
+                } catch (error) {
+                    console.log(`Không thể tải file ${filename}:`, error);
+                }
+            }
+            
+            // If no JSON files found, use localStorage as backup
+            if (allMods.length === 0) {
+                loadFromLocalStorage();
+            }
+            
+            updateStats();
+            displayMods();
+        }
+
+        function loadFromLocalStorage() {
+            allMods = [];
+            Object.keys(categories).forEach(category => {
+                const data = localStorage.getItem(`ets2_mods_${category}`);
+                if (data) {
+                    try {
+                        const mods = JSON.parse(data);
+                        if (Array.isArray(mods)) {
+                            mods.forEach(mod => {
+                                mod.category = category;
+                                allMods.push(mod);
+                            });
+                        }
+                    } catch (e) {
+                        console.error('Error parsing localStorage data:', e);
+                    }
+                }
+            });
+            
+            // If still empty, create sample data
+            if (allMods.length === 0) {
+                createSampleData();
+            }
+        }
+
+        function createSampleData() {
+            const sampleMods = [
+                {
+                    id: generateId(),
+                    name: "Scania R Series 2023",
+                    category: "trucks",
+                    description: "Scania R Series phiên bản 2023 với nội thất chi tiết, ánh sáng thực tế và nhiều tùy chọn.",
+                    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    download: "https://drive.google.com/uc?export=download&id=1ABC123XYZ",
+                    size: "45.2 MB",
+                    version: "1.47",
+                    author: "ETS2Mods Team",
+                    downloads: 12500,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: generateId(),
+                    name: "Promods Map 2.65",
+                    category: "maps",
+                    description: "Bản đồ mở rộng châu Âu với chi tiết cao, thêm nhiều thành phố và đường mới.",
+                    image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    download: "https://drive.google.com/uc?export=download&id=2DEF456UVW",
+                    size: "2.1 GB",
+                    version: "1.47",
+                    author: "Promods Team",
+                    downloads: 89300,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: generateId(),
+                    name: "Realistic Graphics Mod",
+                    category: "graphics",
+                    description: "Cải thiện đồ họa, thời tiết, ánh sáng và hiệu ứng hình ảnh cho trải nghiệm thực tế hơn.",
+                    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    download: "https://drive.google.com/uc?export=download&id=3GHI789RST",
+                    size: "320 MB",
+                    version: "1.46+",
+                    author: "Graphics Team",
+                    downloads: 67800,
+                    createdAt: new Date().toISOString()
+                },
+                {
+                    id: generateId(),
+                    name: "Euro Truck Simulator 2",
+                    category: "game_download",
+                    description: "Phiên bản đầy đủ của game Euro Truck Simulator 2 với tất cả DLC.",
+                    image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+                    download: "https://store.steampowered.com/app/227300/Euro_Truck_Simulator_2/",
+                    size: "15 GB",
+                    version: "1.47",
+                    author: "SCS Software",
+                    downloads: 0,
+                    createdAt: new Date().toISOString()
+                }
+            ];
+            
+            sampleMods.forEach(mod => {
+                allMods.push(mod);
+                // Also save to localStorage for backup
+                saveToLocalStorage(mod.category, mod);
+            });
+            
             updateStats();
         }
 
-        function getAllMods() {
-            let allMods = [];
-            Object.keys(categories).forEach(category => {
-                const categoryData = getCategoryData(category);
-                allMods = allMods.concat(categoryData.map(mod => ({...mod, category})));
-            });
-            return allMods;
+        function saveToLocalStorage(category, mod) {
+            const key = `ets2_mods_${category}`;
+            const existingData = localStorage.getItem(key);
+            let mods = [];
+            
+            if (existingData) {
+                try {
+                    mods = JSON.parse(existingData);
+                } catch (e) {
+                    mods = [];
+                }
+            }
+            
+            // Check if mod already exists
+            const existingIndex = mods.findIndex(m => m.id === mod.id);
+            if (existingIndex === -1) {
+                mods.push(mod);
+            } else {
+                mods[existingIndex] = mod;
+            }
+            
+            localStorage.setItem(key, JSON.stringify(mods));
         }
 
         function getFilteredMods() {
-            let mods = getAllMods();
+            let mods = allMods.filter(mod => mod.category !== 'game_download');
             
             // Apply search filter
             if (searchQuery) {
@@ -1480,7 +1820,7 @@
             }
             
             // Apply category filter
-            if (currentFilter !== 'all' && currentFilter !== 'game_download') {
+            if (currentFilter !== 'all') {
                 mods = mods.filter(mod => mod.category === currentFilter);
             }
             
@@ -1488,112 +1828,29 @@
         }
 
         function updateStats() {
-            let totalMods = 0;
+            const totalMods = allMods.filter(mod => mod.category !== 'game_download').length;
             let totalDownloads = 0;
             
-            // Calculate totals
-            Object.keys(categories).forEach(category => {
-                const categoryData = getCategoryData(category);
-                totalMods += categoryData.length;
-                categoryData.forEach(mod => {
-                    totalDownloads += mod.downloads || 0;
-                });
+            allMods.forEach(mod => {
+                totalDownloads += mod.downloads || 0;
             });
+            
+            const trucksCount = allMods.filter(mod => mod.category === 'trucks').length;
+            const mapsCount = allMods.filter(mod => mod.category === 'maps').length;
             
             // Update quick stats
             document.getElementById('totalModsCount').textContent = totalMods;
             document.getElementById('totalDownloadsCount').textContent = formatNumber(totalDownloads);
-            document.getElementById('trucksCount').textContent = getCategoryData('trucks').length;
-            document.getElementById('mapsCount').textContent = getCategoryData('maps').length;
+            document.getElementById('trucksCount').textContent = trucksCount;
+            document.getElementById('mapsCount').textContent = mapsCount;
             
             // Update footer
             document.getElementById('footerTotalMods').textContent = totalMods;
             document.getElementById('footerTotalDownloads').textContent = formatNumber(totalDownloads);
-            document.getElementById('footerDataId').textContent = 'v1.0';
             
-            // Update manage modal
-            document.getElementById('manageTotalMods').textContent = totalMods;
-        }
-
-        function formatNumber(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return num.toString();
-        }
-
-        // Initialize data
-        function initializeData() {
-            Object.keys(categories).forEach(category => {
-                const existingData = getCategoryData(category);
-                if (existingData.length === 0) {
-                    // Add sample data for each category
-                    const sampleData = getSampleDataForCategory(category);
-                    saveCategoryData(category, sampleData);
-                }
-            });
-        }
-
-        function getSampleDataForCategory(category) {
-            switch(category) {
-                case 'trucks':
-                    return [{
-                        id: generateId(),
-                        name: "Scania R Series 2023",
-                        category: "trucks",
-                        description: "Scania R Series phiên bản 2023 với nội thất chi tiết, ánh sáng thực tế và nhiều tùy chọn.",
-                        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                        download: "https://drive.google.com/uc?export=download&id=1ABC123XYZ",
-                        size: "45.2 MB",
-                        version: "1.47",
-                        author: "ETS2Mods Team",
-                        downloads: 12500,
-                        createdAt: new Date().toISOString()
-                    }];
-                case 'maps':
-                    return [{
-                        id: generateId(),
-                        name: "Promods Map 2.65",
-                        category: "maps",
-                        description: "Bản đồ mở rộng châu Âu với chi tiết cao, thêm nhiều thành phố và đường mới.",
-                        image: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                        download: "https://drive.google.com/uc?export=download&id=2DEF456UVW",
-                        size: "2.1 GB",
-                        version: "1.47",
-                        author: "Promods Team",
-                        downloads: 89300,
-                        createdAt: new Date().toISOString()
-                    }];
-                case 'graphics':
-                    return [{
-                        id: generateId(),
-                        name: "Realistic Graphics Mod",
-                        category: "graphics",
-                        description: "Cải thiện đồ họa, thời tiết, ánh sáng và hiệu ứng hình ảnh cho trải nghiệm thực tế hơn.",
-                        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                        download: "https://drive.google.com/uc?export=download&id=3GHI789RST",
-                        size: "320 MB",
-                        version: "1.46+",
-                        author: "Graphics Team",
-                        downloads: 67800,
-                        createdAt: new Date().toISOString()
-                    }];
-                case 'game_download':
-                    return [{
-                        id: generateId(),
-                        name: "Euro Truck Simulator 2",
-                        category: "game_download",
-                        description: "Phiên bản đầy đủ của game Euro Truck Simulator 2 với tất cả DLC.",
-                        image: "https://images.unsplash.com/photo-1560958089-b8a1929cea89?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-                        download: "https://store.steampowered.com/app/227300/Euro_Truck_Simulator_2/",
-                        size: "15 GB",
-                        version: "1.47",
-                        author: "SCS Software",
-                        downloads: 0,
-                        createdAt: new Date().toISOString()
-                    }];
-                default:
-                    return [];
-            }
+            // Update settings
+            document.getElementById('settingsTotalMods').textContent = totalMods;
+            document.getElementById('settingsTotalDownloads').textContent = formatNumber(totalDownloads);
         }
 
         // Initialize sidebar categories
@@ -1609,11 +1866,13 @@
             
             // Add other categories
             Object.entries(categories).forEach(([key, category]) => {
-                const categoryItem = document.createElement('div');
-                categoryItem.className = 'category-item';
-                categoryItem.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.name}`;
-                categoryItem.onclick = () => filterCategory(key);
-                categoryList.appendChild(categoryItem);
+                if (key !== 'game_download') {
+                    const categoryItem = document.createElement('div');
+                    categoryItem.className = 'category-item';
+                    categoryItem.innerHTML = `<i class="fas fa-${category.icon}"></i> ${category.name}`;
+                    categoryItem.onclick = () => filterCategory(key);
+                    categoryList.appendChild(categoryItem);
+                }
             });
         }
 
@@ -1716,15 +1975,11 @@
                             <span><i class="fas fa-tag"></i> ${mod.version || '1.47'}</span>
                         </div>
                         <div class="mod-actions">
-                            <button class="mod-btn download" onclick="${mod.category === 'game_download' ? 'openGameDownloadModal()' : `openDownloadModal('${mod.id}', '${mod.category}')`}">
-                                <i class="fas fa-download"></i> ${mod.category === 'game_download' ? 'Tải Game' : 'Tải Mod'}
+                            <button class="mod-btn download" onclick="openDownloadModal('${mod.id}', '${mod.category}')">
+                                <i class="fas fa-download"></i> Tải Mod
                             </button>
-                            ${mod.category !== 'game_download' ? `
-                            <button class="mod-btn delete" onclick="deleteMod('${mod.id}', '${mod.category}')">
-                                <i class="fas fa-trash"></i> Xóa
-                            </button>` : ''}
                         </div>
-                        ${mod.author ? `<p style="color: #8b949e; font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-user"></i> ${mod.author}</p>` : ''}
+                        ${mod.author ? `<p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px;"><i class="fas fa-user"></i> ${mod.author}</p>` : ''}
                     </div>
                 </div>
             `;
@@ -1735,7 +1990,7 @@
             const gameDownloadSection = document.getElementById('gameDownloadSection');
             
             // Show/hide game download section
-            if (currentFilter === 'game_download' || currentFilter === 'all') {
+            if (currentFilter === 'all') {
                 gameDownloadSection.style.display = 'block';
             } else {
                 gameDownloadSection.style.display = 'none';
@@ -1781,14 +2036,13 @@
             document.getElementById('addModForm').reset();
         }
 
-        function showManageModal() {
-            updateStats();
-            document.getElementById('manageModal').style.display = 'flex';
+        function showSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
 
-        function closeManageModal() {
-            document.getElementById('manageModal').style.display = 'none';
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').style.display = 'none';
             document.body.style.overflow = 'auto';
         }
 
@@ -1803,15 +2057,14 @@
         }
 
         function openDownloadModal(modId, category) {
-            const categoryData = getCategoryData(category);
-            const mod = categoryData.find(m => m.id === modId);
+            const mod = allMods.find(m => m.id === modId && m.category === category);
             
             if (!mod) {
                 showToast('Không tìm thấy mod!', true);
                 return;
             }
             
-            currentMod = {...mod, category};
+            currentMod = mod;
             document.getElementById('modalModName').textContent = currentMod.name;
             document.getElementById('downloadLink').value = currentMod.download;
             document.getElementById('downloadModal').style.display = 'flex';
@@ -1849,7 +2102,7 @@
         }
 
         // Mod functions
-        function addMod(event) {
+        async function addMod(event) {
             event.preventDefault();
             
             const modData = {
@@ -1880,27 +2133,53 @@
                 return;
             }
             
-            // Save to storage
-            const categoryData = getCategoryData(modData.category);
-            categoryData.push(modData);
-            saveCategoryData(modData.category, categoryData);
+            // Add to memory and localStorage
+            allMods.push(modData);
+            saveToLocalStorage(modData.category, modData);
+            
+            // Save to JSON file on server
+            await saveToServer(modData.category, modData);
             
             displayMods();
+            updateStats();
             showToast(`Đã thêm mod "${modData.name}" thành công!`);
             closeAddModal();
         }
 
-        function deleteMod(modId, category) {
-            if (!confirm('Bạn có chắc chắn muốn xóa mod này?')) return;
-            
-            const categoryData = getCategoryData(category);
-            const modIndex = categoryData.findIndex(mod => mod.id === modId);
-            
-            if (modIndex !== -1) {
-                categoryData.splice(modIndex, 1);
-                saveCategoryData(category, categoryData);
-                displayMods();
-                showToast('Đã xóa mod thành công!');
+        async function saveToServer(category, newMod) {
+            try {
+                // First, get existing mods from the server
+                const filename = jsonFiles[category];
+                let existingMods = [];
+                
+                try {
+                    const response = await fetch(filename);
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (Array.isArray(data)) {
+                            existingMods = data;
+                        }
+                    }
+                } catch (error) {
+                    console.log(`Không thể tải file ${filename}, tạo file mới`);
+                }
+                
+                // Check if mod already exists
+                const existingIndex = existingMods.findIndex(m => m.id === newMod.id);
+                if (existingIndex === -1) {
+                    existingMods.push(newMod);
+                } else {
+                    existingMods[existingIndex] = newMod;
+                }
+                
+                // In a real application, you would send this to your server
+                // For now, we'll just log it
+                console.log(`Cần lưu vào file ${filename}:`, existingMods);
+                showToast('Mod đã được lưu cục bộ. Cần upload lên server.');
+                
+            } catch (error) {
+                console.error('Error saving to server:', error);
+                showToast('Lỗi khi lưu lên server, đã lưu cục bộ', true);
             }
         }
 
@@ -1914,13 +2193,10 @@
                     
                     // Increase download count
                     if (currentMod) {
-                        const categoryData = getCategoryData(currentMod.category);
-                        const mod = categoryData.find(m => m.id === currentMod.id);
-                        if (mod) {
-                            mod.downloads = (mod.downloads || 0) + 1;
-                            saveCategoryData(currentMod.category, categoryData);
-                            displayMods();
-                        }
+                        currentMod.downloads = (currentMod.downloads || 0) + 1;
+                        saveToLocalStorage(currentMod.category, currentMod);
+                        updateStats();
+                        displayMods();
                     }
                 })
                 .catch(() => {
@@ -1933,84 +2209,6 @@
                 window.open(currentMod.download, '_blank');
                 showToast('Đang mở link tải...');
             }
-        }
-
-        // Manage functions
-        function clearAllData() {
-            if (!confirm('BẠN CÓ CHẮC CHẮN MUỐN XÓA TOÀN BỘ DỮ LIỆU?\n\nHành động này không thể hoàn tác!')) {
-                return;
-            }
-            
-            Object.keys(categories).forEach(category => {
-                localStorage.removeItem(`${STORAGE_PREFIX}${category}`);
-            });
-            
-            initializeData();
-            displayMods();
-            showToast('Đã xóa toàn bộ dữ liệu và khôi phục mẫu!');
-            closeManageModal();
-        }
-
-        // Export/Import
-        function exportData() {
-            const allData = {};
-            Object.keys(categories).forEach(category => {
-                allData[category] = getCategoryData(category);
-            });
-            
-            if (getAllMods().length === 0) {
-                showToast('Không có dữ liệu để export!', true);
-                return;
-            }
-            
-            const dataStr = JSON.stringify(allData, null, 2);
-            const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
-            const fileName = `ets2_mods_backup_${Date.now()}.json`;
-            
-            const link = document.createElement('a');
-            link.setAttribute('href', dataUri);
-            link.setAttribute('download', fileName);
-            link.click();
-            
-            showToast('Đã xuất dữ liệu thành file JSON!');
-        }
-
-        function importData() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            
-            input.onchange = e => {
-                const file = e.target.files[0];
-                if (!file) return;
-                
-                const reader = new FileReader();
-                reader.onload = event => {
-                    try {
-                        const importedData = JSON.parse(event.target.result);
-                        
-                        // Validate structure
-                        if (!importedData || typeof importedData !== 'object') {
-                            throw new Error('Dữ liệu không hợp lệ');
-                        }
-                        
-                        // Import each category
-                        Object.keys(importedData).forEach(category => {
-                            if (Array.isArray(importedData[category])) {
-                                saveCategoryData(category, importedData[category]);
-                            }
-                        });
-                        
-                        displayMods();
-                        showToast('Đã nhập dữ liệu thành công!');
-                    } catch (error) {
-                        showToast('File JSON không hợp lệ!', true);
-                    }
-                };
-                reader.readAsText(file);
-            };
-            
-            input.click();
         }
 
         // Toast notification
@@ -2028,11 +2226,10 @@
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
-            initializeData();
+            loadTheme();
             initSlider();
             initCategories();
-            displayMods();
-            updateStats();
+            loadMods();
             
             // Event listeners
             document.getElementById('addModForm').addEventListener('submit', addMod);
@@ -2043,12 +2240,12 @@
             });
             
             // Close modals
-            const modals = ['addModal', 'manageModal', 'downloadModal', 'gameDownloadModal'];
+            const modals = ['addModal', 'settingsModal', 'downloadModal', 'gameDownloadModal'];
             modals.forEach(modalId => {
                 document.getElementById(modalId).addEventListener('click', function(e) {
                     if (e.target === this) {
                         if (modalId === 'addModal') closeAddModal();
-                        if (modalId === 'manageModal') closeManageModal();
+                        if (modalId === 'settingsModal') closeSettingsModal();
                         if (modalId === 'downloadModal') closeDownloadModal();
                         if (modalId === 'gameDownloadModal') closeGameDownloadModal();
                     }
@@ -2059,11 +2256,17 @@
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeAddModal();
-                    closeManageModal();
+                    closeSettingsModal();
                     closeDownloadModal();
                     closeGameDownloadModal();
                 }
             });
+            
+            // Initialize theme toggle state
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.checked = document.body.classList.contains('theme-light');
+            }
         });
     </script>
 </body>
